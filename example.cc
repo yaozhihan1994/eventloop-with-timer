@@ -22,7 +22,7 @@ void tst2()
 
 int main(int argc, char** argv) {
 
-    v2x::EventLoop loop;
+    EventLoop loop;
     loop.loop();
 
     auto t0 = loop.runEvery(100, true, []() {
