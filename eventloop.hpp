@@ -28,9 +28,6 @@
 #include <time.h>
 #include <string.h>
 
-namespace v2x
-{
-
 using system_clock = std::chrono::system_clock;
 using steady_clock = std::chrono::steady_clock;
 
@@ -58,7 +55,7 @@ inline std::string gettime()
 // 字符串拼接，在printf前面加上时间
 #ifdef LOG_STDOUT
 #define LOG(fmt, args...) printf("[%s %s:%d] " fmt "", \
-    v2x::details::gettime().c_str(), __FUNCTION__, __LINE__, ##args)
+    details::gettime().c_str(), __FUNCTION__, __LINE__, ##args)
 #else
 #define LOG(fmt, args...) void(0)
 #endif
@@ -396,11 +393,9 @@ private:
     int event_fd_, epoll_fd_;
     std::unique_ptr<std::thread> thr_;
     std::thread::id pid_;
-    v2x::details::Heap<Timer> heap_;
+    details::Heap<Timer> heap_;
     std::mutex mutex_;  
     std::queue<TaskCb> task_;
     std::atomic<uint64_t> timer_id_;
     std::set<int> timers_;
 };
-
-}
