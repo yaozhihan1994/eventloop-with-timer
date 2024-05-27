@@ -189,7 +189,7 @@ public:
         }
     }
 
-    inline void cancelTimer(int fd)
+    inline void cancelTimer(uint32_t fd)
     {
         runInLoop([this, fd](){
             timers_.erase(fd);
@@ -397,5 +397,5 @@ private:
     std::mutex mutex_;  
     std::queue<TaskCb> task_;
     std::atomic<uint64_t> timer_id_;
-    std::set<int> timers_;
+    std::set<uint32_t> timers_;
 };
